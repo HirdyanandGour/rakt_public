@@ -3,8 +3,6 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import { collection, doc, getDoc, getDocs, getFirestore } from "firebase/firestore";
-import app from "../../utils/firebase";
 const getData = async () => {
 	const firestore = getFirestore(app);
 	const data = await getDocs(collection(firestore, "rakt"));
