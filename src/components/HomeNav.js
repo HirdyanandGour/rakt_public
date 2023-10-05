@@ -53,7 +53,7 @@ export default function BasicTabs() {
 
   return (
 		<Box sx={{ width: '100%' }}>
-			<Container centered>
+			<Container>
 
       <CustomTabPanel value={value} index={0}>
 	      <Box>
@@ -75,7 +75,7 @@ export default function BasicTabs() {
 						<Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
 							<Tab icon={<SearchIcon />} label="Search" {...a11yProps(0)} />
 							<Tab icon={<AddBoxIcon />} label="Add Item" {...a11yProps(1)} />
-							<Tab icon={<AccessibilityNewIcon />} label="Delete Request" {...a11yProps(2)} />
+							<Tab icon={<AccessibilityNewIcon />} label="Delete" {...a11yProps(2)} />
 						</Tabs>
 					</Box>
 			</Grid>
