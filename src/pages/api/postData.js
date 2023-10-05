@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     // Add your logic to store data or do any other API tasks
     // This example will just echo back the received data
 		try {
-			const {arr} = await sql`INSERT INTO posts (_raid, _name, _mname, _fname, _mobile ) VALUES (${raid}, ${name}, ${mname}, ${fname}, ${mobile});`;
+			const {arr} = await sql`INSERT INTO cards (_raid, _name, _mname, _fname, _mobile ) VALUES (${raid}, ${name}, ${mname}, ${fname}, ${mobile});`;
       res.status(200).send({ status: 'Success' });
     } catch (err) {
       console.error(err);
