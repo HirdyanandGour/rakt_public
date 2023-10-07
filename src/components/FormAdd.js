@@ -4,6 +4,8 @@ import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
   
 export default function FormAdd() {
 	const [ raid, setRaid ] =  useState('');
@@ -11,6 +13,7 @@ export default function FormAdd() {
 	const [ mname, setMname ] =  useState('');
 	const [ fname, setFname ] =  useState('');
 	const [ mobile, setMobile ] =  useState('');
+	const [ open, setOpen ] = useState(false);
 	
 	const saveTodo = async (event) => {
 		try{
@@ -23,36 +26,41 @@ export default function FormAdd() {
 				},
 				body: JSON.stringify({ raid, name, mname, fname, mobile }),
 			});
-
-			const data = await response.json();
-			console.log(data);  // Handle
-			// const raid = raid.current.value;
-			// const name = name.current.value;
-			// const motherName = mname.current.value;
-			// const fatherName = fname.current.value;
-			// const mobile = mobile.current.value;
-
-			//console.log( raid, name, motherName, fatherName, mobile );
-
-			//const { rows } = await sql`INSERT INTO TABLE_NAME ( _raid, _name, _fname, _mname, _mobile ) VALUES ( raid, name, fatherName, motherName, mobile )`;
-			event.target.reset();
+			if (response.ok === true) {
+				setOpen(true);
+				setRaid("");
+				setName("");
+				setMname("");
+				setFname("");
+				setMobile("");
+			}else{
+				throw new Error('Failed to add data')
+			}
 		}catch(e){
 			console.error("Error adding document")
 		}
 	};
   
   return (
-    <Box sx={{ minWidth: 275 }}>
-      <Card variant="outlined" sx={{padding: '2ch 2ch'}}>
+	<Card variant="outlined" sx={{padding: '2ch 2ch'}}>
+		<Box sx={{ minWidth: 275 }}>
+			<Box sx={{ width: 500, maxWidth: '100%', display: 'table', margin: '0 auto', padding: '10ch 2ch' }}>
 				<Stack spacing={2}>
-					<TextField fullWidth onChange={(e) => setRaid(e.target.value)} label="Ration Card ID" id="raid" />
-					<TextField fullWidth onChange={(e) => setName(e.target.value)}  label="Name" id="name" />
-					<TextField fullWidth onChange={(e) => setMname(e.target.value)} label="Mother Name" id="mother_name" />
-					<TextField fullWidth onChange={(e) => setFname(e.target.value)} label="Father Name" id="father_name" />
-					<TextField fullWidth onChange={(e) => setMobile(e.target.value)} label="Mobile" id="mobile" />
+					<Snackbar open={open} autoHideDuration={6000}>
+						<Alert severity="success">
+							Data added successfully !!
+						</Alert>
+					</Snackbar>
+					<TextField required fullWidth onChange={(e) => setRaid(e.target.value)} label="Ration Card ID" id="raid" value={raid} />
+					<TextField required fullWidth onChange={(e) => setName(e.target.value)}  label="Name" id="name" value={name}/>
+					<TextField fullWidth onChange={(e) => setMname(e.target.value)} label="Mother Name" id="mother_name" value={mname} />
+					<TextField fullWidth onChange={(e) => setFname(e.target.value)} label="Father Name" id="father_name" value={fname} />
+					<TextField fullWidth onChange={(e) => setMobile(e.target.value)} label="Mobile" id="mobile" value={mobile} />
 					<Button variant="outlined"  onClick={saveTodo}>Add Data</Button>
 				</Stack>
-			</Card>
-    </Box>
+			</Box>
+    	</Box>
+	</Card>
+
   );
 }
