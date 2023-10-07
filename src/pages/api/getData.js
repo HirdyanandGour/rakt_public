@@ -1,10 +1,14 @@
 import { sql } from '@vercel/postgres';
+import { NextResponse } from 'next/server';
+
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { query } = req.body;
     try {
 		const arr = await sql`SELECT _raid, _name, _mname, _fname, _mobile, created_on  FROM cards WHERE _name LIKE ('{{%query%}}') OR  _mname LIKE ('{{%query%}}') OR _fname  LIKE ('{{%query%}}') OR _mobile  LIKE ('{{%query%}}') LIMIT 20`;
-      res.status(200).send({ status: 'success', data: arr });
+		console.log(arr)
+		return NextResponse.json({ arr }, { status: 200 });
+		//res.status(200).send({ status: 'success', data: arr });
     } catch (err) {
       res.status(500).send({ status: 'failed', error: err.message });
     }
