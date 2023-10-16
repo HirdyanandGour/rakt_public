@@ -34,7 +34,7 @@ export default function DataCard({data}) {
 			   <React.Fragment>
 				 {(data?.length) > 0 ? (
 						(data).map( (card) => 
-							<CardContent key={card._raid} sx={{ mx: '12px'}}>
+							<CardContent key={ `${card._raid}+${card._name}` } sx={{ mx: '12px'}}>
 							<Typography variant="h5" component="div">
 							<Button size="small">CARD NO</Button>{card._raid}
 							</Typography>
