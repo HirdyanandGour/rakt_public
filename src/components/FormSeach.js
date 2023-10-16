@@ -5,46 +5,30 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
+import DataCard from './DataCard';
 
 export default function FormSearch() {
 	const [query, setQuery] = useState('');
 	const [data, setData] = useState(null);
 	const callAPI = async () => {
-		const response = await fetch('/api/getData', {
-			method: 'POST',
-			headers: {
-			'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ query }),
+		const response = await fetch('/api/getData?query='+query, {
+			method: 'GET',
+		})
+		.then(response => response.json())
+		.then(data => {
+			setData(data.data) // Set the toDo variable
 		});
-		console.log(response)
-		setData(response)
 	}
   return (
       <Card variant="outlined">
 		<Box sx={{ minWidth: 275 }}>
-			<Box
-			sx={{
-				width: 500,
-				maxWidth: '100%',
-				display: 'table',
-				margin: '0 auto',
-				padding: '10ch 2ch'
-			}}
-			>
-			<Stack spacing={2}>
-				<TextField fullWidth onChange={(e) => setQuery(e.target.value)} label="Search..." id="fullWidth" />
-				<Button variant="outlined"  onClick={callAPI}>Get Data</Button>
-			</Stack>
+			<Box sx={{ width: 500, maxWidth: '100%', display: 'table', margin: '0 auto', padding: '10ch 2ch' }} >
+				<Stack spacing={2}>
+					<TextField fullWidth onChange={(e) => setQuery(e.target.value)} label="Search..." id="fullWidth" />
+					<Button variant="outlined"  onClick={callAPI}>Get Data</Button>
+				</Stack>
 			</Box>
-			<Paper elevation={3}>
-					{(data?.length) > 0 ? (
-						data.map( (card) => (
-							{card}
-						) )
-					) : ( <p></p>)}
-						
-			</Paper>
+			<DataCard data={data} />
 		</Box>
 	  </Card>    
   );
