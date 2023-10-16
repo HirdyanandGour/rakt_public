@@ -5,7 +5,6 @@ import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
-import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
   
 export default function FormAdd() {
@@ -27,7 +26,6 @@ export default function FormAdd() {
 				},
 				body: JSON.stringify({ raid, name, mname, fname, mobile }),
 			});
-			console.log(response)
 			if (response.ok === true) {
 				setOpen(true);
 				setRaid("");
@@ -48,13 +46,14 @@ export default function FormAdd() {
 	<Card variant="outlined">
 		<Box sx={{ minWidth: 275 }}>
 			<Box sx={{ width: 500, maxWidth: '100%', display: 'table', margin: '0 auto', padding: '10ch 2ch' }}>
+				<h5>Sahi jankari record me add kare</h5>
 				<Stack spacing={2}>
-					<Alert severity="success" onClose={ () => setOpen({open}) } > { message } </Alert>
-					<TextField required fullWidth onChange={(e) => setRaid(e.target.value)} label="Ration Card ID" id="raid" value={raid} />
-					<TextField required fullWidth onChange={(e) => setName(e.target.value)}  label="Name" id="name" value={name}/>
-					<TextField fullWidth onChange={(e) => setMname(e.target.value)} label="Mother Name" id="mother_name" value={mname} />
-					<TextField fullWidth onChange={(e) => setFname(e.target.value)} label="Father Name" id="father_name" value={fname} />
-					<TextField fullWidth onChange={(e) => setMobile(e.target.value)} label="Mobile" id="mobile" value={mobile} />
+					{ (open)? <Alert severity="success" onClose={ () => setOpen({open}) } > { message } </Alert> : ''}
+					<TextField required fullWidth onChange={(e) => setRaid(e.target.value)} label="Ration Card ID e.g. 123456789012" id="raid" value={raid} />
+					<TextField required fullWidth onChange={(e) => setName(e.target.value)}  label="Name e.g. amit" id="name" value={name}/>
+					<TextField fullWidth onChange={(e) => setMname(e.target.value)} label="Mother Name e.g. madhu" id="mother_name" value={mname} />
+					<TextField fullWidth onChange={(e) => setFname(e.target.value)} label="Father Name e.g. sumit" id="father_name" value={fname} />
+					<TextField fullWidth onChange={(e) => setMobile(e.target.value)} label="Mobile e.g. 9876543210" id="mobile" value={mobile} />
 					<Button variant="outlined"  onClick={saveTodo}>Add Data</Button>
 				</Stack>
 			</Box>
