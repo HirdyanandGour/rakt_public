@@ -15,13 +15,19 @@ export default function DataCard({data}) {
 						(data).map( (card) => 
 						<Paper key={ `${card._raid}+${card._name}` } elevation={2} sx={{ mx: '12px' }}>
 							<Typography variant="h5" component="div">
-							<Button size="small">CARD NO</Button>${card._raid}
+								<Button size="small">CARD NO</Button>{card._raid}
 							</Typography>
 							<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-								<Button size="small">NAME</Button> <b>${card._name}</b> <Button size="small">Mother Name</Button><b>${card._mname}</b>
+								<Button size="small">NAME</Button> <b>{card._name}</b> 
 							</Typography>
 							<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-								<Button size="small">Father Name </Button><b>${card._fname}</b><Button size="small">MOBILE</Button><b>${card._mobile}</b>
+								<Button size="small">Mother Name</Button><b>{card._mname}</b>
+							</Typography>
+							<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+								<Button size="small">MOBILE</Button><b>{card._mobile}</b>
+							</Typography>
+							<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+								<Button size="small">Father Name </Button><b>{card._fname}</b> 
 							</Typography>
 						</Paper>
 					 )
