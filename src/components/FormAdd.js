@@ -46,7 +46,7 @@ export default function FormAdd() {
 	<Card variant="outlined">
 		<Box sx={{ minWidth: 275 }}>
 			<Box sx={{ width: 500, maxWidth: '100%', display: 'table', margin: '0 auto', padding: '10ch 2ch' }}>
-				<h5>Sahi jankari record me add kare</h5>
+				<h5>Sahi jankari record me add kare </h5>
 				<Stack spacing={2}>
 					{ (open)? <Alert severity="success" onClose={ () => setOpen({open}) } > { message } </Alert> : ''}
 					<TextField required fullWidth onChange={(e) => setRaid(e.target.value)} label="Ration Card ID e.g. 123456789012" id="raid" value={raid} />

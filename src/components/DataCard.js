@@ -19,10 +19,10 @@ export default function DataCard({data}) {
 							<Button size="small">CARD NO</Button>{card._raid}
 							</Typography>
 							<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-								<Button size="small">NAME</Button> <b>{card._name}</b> <Button size="small">Mother Name</Button><b>{card._mname}</b>
+								<Button size="small">NAME</Button> <b>{ card._name.toUpperCase() }</b> <Button size="small">Mother Name</Button><b>{card._mname.toUpperCase() ``}</b>
 							</Typography>
 							<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-								<Button size="small">Father Name </Button><b>{card._fname}</b><Button size="small">MOBILE</Button><b>{card._mobile}</b>
+								<Button size="small">Father Name </Button><b>{card._fname.toUpperCase()}</b><Button size="small">MOBILE</Button><b>{card._mobile}</b>
 							</Typography>
 						</CardContent>
 						</Paper>
