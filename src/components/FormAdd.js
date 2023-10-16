@@ -1,3 +1,4 @@
+"use client"
 import { React, useState } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -14,7 +15,7 @@ export default function FormAdd() {
 	const [ fname, setFname ] =  useState('');
 	const [ mobile, setMobile ] =  useState('');
 	const [ open, setOpen ] = useState(false);
-	
+	const [message, setMessage] = useState('');
 	const saveTodo = async (event) => {
 		try{
 			event.preventDefault();
@@ -26,6 +27,7 @@ export default function FormAdd() {
 				},
 				body: JSON.stringify({ raid, name, mname, fname, mobile }),
 			});
+			console.log(response)
 			if (response.ok === true) {
 				setOpen(true);
 				setRaid("");
@@ -33,6 +35,7 @@ export default function FormAdd() {
 				setMname("");
 				setFname("");
 				setMobile("");
+				setMessage("Data added suuccessfully")
 			}else{
 				throw new Error('Failed to add data')
 			}
@@ -42,15 +45,11 @@ export default function FormAdd() {
 	};
   
   return (
-	<Card variant="outlined" sx={{padding: '2ch 2ch'}}>
+	<Card variant="outlined">
 		<Box sx={{ minWidth: 275 }}>
 			<Box sx={{ width: 500, maxWidth: '100%', display: 'table', margin: '0 auto', padding: '10ch 2ch' }}>
 				<Stack spacing={2}>
-					<Snackbar open={open} autoHideDuration={6000}>
-						<Alert severity="success">
-							Data added successfully !!
-						</Alert>
-					</Snackbar>
+					<Alert severity="success" onClose={ () => setOpen({open}) } > { message } </Alert>
 					<TextField required fullWidth onChange={(e) => setRaid(e.target.value)} label="Ration Card ID" id="raid" value={raid} />
 					<TextField required fullWidth onChange={(e) => setName(e.target.value)}  label="Name" id="name" value={name}/>
 					<TextField fullWidth onChange={(e) => setMname(e.target.value)} label="Mother Name" id="mother_name" value={mname} />
