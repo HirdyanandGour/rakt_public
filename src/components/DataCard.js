@@ -13,8 +13,7 @@ export default function DataCard({data}) {
 			   <React.Fragment>
 				 {(data?.length) > 0 ? (
 						(data).map( (card) => 
-						<Paper key={ `${card._raid}+${card._name}` } elevation={2} sx={{ margin: '5 auto' }}>
-							<CardContent sx={{ mx: '12px'}}>
+						<Paper key={ `${card._raid}+${card._name}` } elevation={2} sx={{ mx: '12px' }}>
 							<Typography variant="h5" component="div">
 							<Button size="small">CARD NO</Button>{card._raid}
 							</Typography>
@@ -24,7 +23,6 @@ export default function DataCard({data}) {
 							<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
 								<Button size="small">Father Name </Button><b>{card._fname.toUpperCase()}</b><Button size="small">MOBILE</Button><b>{card._mobile}</b>
 							</Typography>
-						</CardContent>
 						</Paper>
 					 )
 					 ) : ( <p></p>)}			  
